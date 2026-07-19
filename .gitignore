@@ -19,3 +19,6 @@ __pycache__/
 .venv/
 venv/
 env/
+
+# Third-party assistant customization skills
+skills/
