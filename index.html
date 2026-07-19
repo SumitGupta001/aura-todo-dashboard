@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraTodo — Premium Productivity Dashboard</title>
+  <!-- Google Fonts Fira Code & Fira Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Wrapper -->
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <!-- SVG Logo -->
+        <svg class="app-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+          <path d="m9 12 2 2 4-4"/>
+        </svg>
+        <h1>Aura<span>Todo</span></h1>
+      </div>
+      
+      <!-- Header Controls -->
+      <div class="header-controls">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark mode" title="Toggle Theme">
+          <!-- Light Mode Icon (Sun) -->
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <!-- Dark Mode Icon (Moon) -->
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      
+      <!-- Left Column: Add Task and Analytics -->
+      <aside class="sidebar-panel">
+        
+        <!-- Quick Stats Widget -->
+        <section class="card stats-card" aria-label="Productivity Statistics">
+          <h3>Progress Overview</h3>
+          <div class="stats-display">
+            <!-- Progress SVG Circle -->
+            <div class="progress-ring-container">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-bg" stroke="var(--color-border)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                <circle id="progress-circle" class="progress-ring-bar" stroke="var(--color-secondary)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" stroke-dasharray="314.16" stroke-dashoffset="314.16"/>
+              </svg>
+              <div id="progress-text" class="progress-percentage">0%</div>
+            </div>
+            
+            <div class="stats-details">
+              <div class="stat-item">
+                <span class="stat-label">Completed</span>
+                <span id="stats-completed" class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Pending</span>
+                <span id="stats-pending" class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Streak</span>
+                <span id="stats-streak" class="stat-value" title="Consecutive days with tasks completed">0 🔥</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Create Task Section -->
+        <section class="card form-card">
+          <h2>Create Task</h2>
+          <form id="todo-form" novalidate>
+            <!-- Title -->
+            <div class="form-group">
+              <label for="task-title">Task Title</label>
+              <input type="text" id="task-title" class="input" placeholder="e.g. Design homepage hero" required>
+              <span id="title-error" class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label for="task-desc">Description (Optional)</label>
+              <textarea id="task-desc" class="input textarea" placeholder="Add some details..." rows="3"></textarea>
+            </div>
+
+            <!-- Priority & Category Grid -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-priority">Priority</label>
+                <select id="task-priority" class="input select-input">
+                  <option value="low">Low Priority</option>
+                  <option value="medium" selected>Medium Priority</option>
+                  <option value="high">High Priority</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="task-category">Category</label>
+                <select id="task-category" class="input select-input">
+                  <option value="Work" selected>💼 Work</option>
+                  <option value="Personal">🏡 Personal</option>
+                  <option value="Shopping">🛒 Shopping</option>
+                  <option value="Health">💪 Health</option>
+                  <option value="Other">✨ Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Due Date -->
+            <div class="form-group">
+              <label for="task-due">Due Date</label>
+              <input type="date" id="task-due" class="input date-input">
+            </div>
+
+            <!-- Add Task Button -->
+            <button type="submit" id="add-task-btn" class="btn-primary">
+              <svg class="btn-icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5v14"/>
+              </svg>
+              Add Task
+            </button>
+          </form>
+        </section>
+
+      </aside>
+
+      <!-- Right Column: Filters and Task List -->
+      <section class="task-manager-panel" aria-label="Task Management Dashboard">
+        
+        <!-- Filters, Search & Sorting Controls -->
+        <div class="card controls-card">
+          <div class="search-sort-row">
+            <div class="search-container">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <input type="text" id="search-input" class="input" placeholder="Search tasks..." aria-label="Search tasks">
+            </div>
+            
+            <div class="sort-container">
+              <label for="sort-select" class="sr-only">Sort by</label>
+              <select id="sort-select" class="input select-input" aria-label="Sort tasks">
+                <option value="date-created-desc">Newest First</option>
+                <option value="date-created-asc">Oldest First</option>
+                <option value="due-date-asc">Due Date (Soonest)</option>
+                <option value="priority-desc">Priority (High to Low)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Category Pill Filters -->
+          <div class="filter-pills-row" id="filter-pills" role="group" aria-label="Filter tasks by category">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="Work">💼 Work</button>
+            <button class="pill" data-filter="Personal">🏡 Personal</button>
+            <button class="pill" data-filter="Shopping">🛒 Shopping</button>
+            <button class="pill" data-filter="Health">💪 Health</button>
+            <button class="pill" data-filter="Other">✨ Other</button>
+          </div>
+
+          <!-- Status Filters Tabs -->
+          <div class="tab-filters" role="tablist" aria-label="Filter tasks by status">
+            <button id="tab-all" role="tab" aria-selected="true" aria-controls="task-list" class="tab active" data-status="all">All Tasks</button>
+            <button id="tab-active" role="tab" aria-selected="false" aria-controls="task-list" class="tab" data-status="active">Active</button>
+            <button id="tab-completed" role="tab" aria-selected="false" aria-controls="task-list" class="tab" data-status="completed">Completed</button>
+          </div>
+        </div>
+
+        <!-- Task List Container -->
+        <div id="task-list" class="todo-list-container" role="tabpanel" aria-labelledby="tab-all">
+          <!-- Tasks will be dynamically injected here by app.js -->
+        </div>
+
+        <!-- Empty State Container -->
+        <div id="empty-state" class="card empty-state hidden">
+          <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <h3>All clear!</h3>
+          <p>No tasks found. Create a new task or change your filters to get started.</p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <p>AuraTodo Dashboard © 2026. Made with ❤️ using HTML, CSS, & Vanilla JS.</p>
+    </footer>
+
+  </div>
+
+  <!-- Edit Task Modal -->
+  <div id="edit-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal card">
+      <div class="modal-header">
+        <h2 id="modal-title">Edit Task</h2>
+        <button id="close-modal-btn" class="btn-icon" aria-label="Close edit dialog">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="edit-form" novalidate>
+        <!-- Modal Fields -->
+        <input type="hidden" id="edit-task-id">
+
+        <div class="form-group">
+          <label for="edit-task-title">Task Title</label>
+          <input type="text" id="edit-task-title" class="input" required>
+          <span id="edit-title-error" class="error-msg" aria-live="polite"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-task-desc">Description (Optional)</label>
+          <textarea id="edit-task-desc" class="input textarea" rows="3"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edit-task-priority">Priority</label>
+            <select id="edit-task-priority" class="input select-input">
+              <option value="low">Low Priority</option>
+              <option value="medium">Medium Priority</option>
+              <option value="high">High Priority</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-task-category">Category</label>
+            <select id="edit-task-category" class="input select-input">
+              <option value="Work">💼 Work</option>
+              <option value="Personal">🏡 Personal</option>
+              <option value="Shopping">🛒 Shopping</option>
+              <option value="Health">💪 Health</option>
+              <option value="Other">✨ Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-task-due">Due Date</label>
+          <input type="date" id="edit-task-due" class="input date-input">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancel-edit-btn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
