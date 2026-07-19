@@ -1,0 +1,21 @@
+# Intermediate files
+.tmp/*
+!.tmp/.gitkeep
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+.env.staging
+
+# Credentials and tokens
+credentials.json
+token.json
+
+# Python virtual environment and cache
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
