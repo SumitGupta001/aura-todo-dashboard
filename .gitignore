@@ -1,6 +1,5 @@
 # Intermediate files
-.tmp/*
-!.tmp/.gitkeep
+.tmp/
 
 # Environment files
 .env
