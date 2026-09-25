@@ -14,10 +14,10 @@ None.
 2. **Verify**: Open `http://localhost:8000/app/` in a web browser to verify that the app loads and works correctly.
 
 ## Outputs
-- [index.html](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/Github%20YT/app/index.html)
-- [index.css](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/Github%20YT/app/index.css)
-- [app.js](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/Github%20YT/app/app.js)
+- [index.html](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/AuroTodo/app/index.html)
+- [index.css](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/AuroTodo/app/index.css)
+- [app.js](file:///Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/AuroTodo/app/app.js)
 
 ## Edge Cases & Error Handling
 - **Missing Directories**: The execution script automatically creates the `app/` folder if it does not exist.
-- **Permission Errors**: Verify write permission for the workspace root `/Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/Github YT/`.
+- **Permission Errors**: Verify write permission for the workspace root `/Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/AuroTodo/`.

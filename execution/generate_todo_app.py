@@ -3,7 +3,7 @@ import os
 import shutil
 
 def main():
-    root_dir = "/Users/sumitgupta/AI_PRACTISE/ANTIGRAVITY/Github YT"
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     app_dir = os.path.join(root_dir, "app")
 
     print("Initializing Todo App relocation...")

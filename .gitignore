@@ -20,5 +20,16 @@ __pycache__/
 venv/
 env/
 
-# Third-party assistant customization skills
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Third-party assistant customization skills and local configs
 skills/
+.agents/
+
